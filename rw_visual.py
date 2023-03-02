@@ -3,18 +3,19 @@ from random_walk import RandomWalk
 
 while True:
     # Prepare the data for random walk
-    rw = RandomWalk(100_000)
+    rw = RandomWalk(5000)
     rw.fill_walk()
 
-    # Show random walk points  seaborn-v0_8
-    plt.style.use('classic')
-    fig, ax = plt.subplots()
+    # Show random walk points
+    plt.style.use('seaborn-v0_8')
+    fig, ax = plt.subplots(figsize=(15, 9), dpi=128)
     point_numbers = range(rw.num_points)
-    ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues, edgecolors='none', s=1)
+    # ax.scatter(rw.x_values, rw.y_values, c=point_numbers, cmap=plt.cm.Blues, edgecolor='none', s=1)
+    ax.plot(rw.x_values, rw.y_values, linewidth=0.5)
 
     # Highlighting the first and last random walk points
-    ax.scatter(0, 0, c='green', edgecolors='none', s=100)
-    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolors='none', s=100)
+    ax.scatter(0, 0, c='green', edgecolor='none', s=100)
+    ax.scatter(rw.x_values[-1], rw.y_values[-1], c='red', edgecolor='none', s=100)
 
     # Hide the axis
     ax.get_xaxis().set_visible(False)

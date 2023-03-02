@@ -12,20 +12,22 @@ class RandomWalk():
         self.x_values = [0]
         self.y_values = [0]
 
+    def get_step(self):
+        """Determine direction and the distance of the step and then create step"""
+        # Determining the direction and the distance to be covered in that direction
+        direction = choice([1, -1])  # Right or left
+        distance = choice([0, 1, 2, 3, 4])
+        step = direction * distance  # Length of the step, positive number - right, negative - left
+
+        return step
+
     def fill_walk(self):
         """Generate all points for random walk"""
-
         # Performing steps until the expected number of points is reached
         while len(self.x_values) < self.num_points:
 
-            # Determining the direction and the distance to be covered in that direction
-            x_direction = choice([1, -1])  # Right or left
-            x_distance = choice([0, 1, 2, 3, 4])
-            x_step = x_direction * x_distance  # Length of the step, positive number - right, negative - left
-
-            y_direction = choice([1, -1])
-            y_distance = choice([0, 1, 2, 3, 4])
-            y_step = y_direction * y_distance
+            x_step = self.get_step()
+            y_step = self.get_step()
 
             # Rejection of moves that lead nowhere
             if x_step == 0 and y_step == 0:
@@ -37,3 +39,5 @@ class RandomWalk():
 
             self.x_values.append(x)
             self.y_values.append(y)
+
+
